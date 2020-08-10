@@ -29,13 +29,11 @@ const JobsState = (props) => {
         }
     }
 
-    const getJobsById = async id => {
+    const getJobById = async id => {
         try {
             
             const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}/${id}.json?markdown=true`);
-
             console.log(res.data);
-
             dispatch({
                 type: GET_JOB,
                 payload: res.data
@@ -75,7 +73,7 @@ const JobsState = (props) => {
             job: state.job,
             searchJobs,
             getJobs,
-            getJobsById
+            getJobById
         }}>
             { props.children }
         </JobsContext.Provider>

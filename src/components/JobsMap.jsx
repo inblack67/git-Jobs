@@ -1,11 +1,11 @@
 import React from 'react'
 
-const SingleJobs = () => {
+const JobsMap = () => {
     return (
         <div>
-            single job
+            map
         </div>
     )
 }
 
-export default SingleJobs
+export default JobsMap

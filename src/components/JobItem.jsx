@@ -1,14 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import JobsContext from '../context/jobs/jobsContext'
+import { useLocation, withRouter } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown'
 
-const JobItem = ({ job: { company, company_logo, company_url, description, how_to_apply, location, title, type, url, id } }) => {
 
-    const jobsContext = useContext(JobsContext);
-    const { loading, getJobsById } = jobsContext;
+const JobItem = ({ history, job: { company, company_logo, company_url, description, how_to_apply, location, title, type, url, id } }) => {
+
+    const currentLocation = useLocation();
 
     const onClick = e => {
-        getJobsById(id);
+        history.push(`/jobs/${id}`);
     }
 
     return (
@@ -33,6 +34,16 @@ const JobItem = ({ job: { company, company_logo, company_url, description, how_t
                         Explore
                     </button>
                 </div>
+                {currentLocation.pathname === `/jobs/${id}` ? <div className="font-hairline">
+                    <div className='font-semibold'>
+                        <h1 className="text-red-500">How to apply?</h1>
+                        <ReactMarkdown source={how_to_apply} />
+                    </div>
+                    <div>
+                        <h1 className="text-xl font-semibold">Description</h1>
+                        <ReactMarkdown source={description} />
+                    </div>
+                </div> : null}
             </div>
         </div>
     )
@@ -42,4 +53,4 @@ JobItem.propTypes = {
     job: PropTypes.object.isRequired,
 }
 
-export default JobItem
+export default withRouter(JobItem);
