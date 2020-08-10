@@ -10,7 +10,7 @@ const Jobs = () => {
     const { getJobs, loading, jobs } = jobsContext;
 
     useEffect(() => {
-        getJobs();
+        // getJobs();
         // eslint-disable-next-line
     }, [])
 
