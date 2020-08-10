@@ -7,6 +7,8 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import About from './components/About';
 import SearchJobs from './components/SearchJobs';
+import SingleJobs from './components/SingleJobs';
+import NotFound from './components/NotFound';
 
 import './App.css';
 
@@ -25,6 +27,8 @@ function App() {
             <Route exact path='/' component={Home} />
             <Route exact path='/search-jobs' component={SearchJobs} />
             <Route exact path='/about' component={About} />
+            <Route exact path='/jobs/:id' component={SingleJobs} />
+            <Route component={NotFound} />
           </Switch>
         </Router>
       </div>

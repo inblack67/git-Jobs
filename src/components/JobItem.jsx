@@ -20,7 +20,7 @@ const JobItem = ({ job: { company, company_logo, company_url, description, how_t
             </div>
             <div className='p-8'>
                 <div className='uppercase flex items-baseline justify-around'>
-                    <span>
+                    <span className='truncate'>
                         {title}
                     </span>
                     <span className='bg-red-500 px-4 py-2 font-bold rounded-full text-xs'>
