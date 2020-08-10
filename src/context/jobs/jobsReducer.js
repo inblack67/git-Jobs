@@ -1,13 +1,21 @@
-import { FETCH_ERROR, GET_JOBS } from '../types';
+import { FETCH_ERROR, GET_JOBS, SEARCH_JOBS, GET_JOB } from '../types';
 
 export default (state, action) => {
     const { payload, type } = action;
     switch(type){
 
-        case GET_JOBS: 
+        case GET_JOBS:
+        case SEARCH_JOBS: 
         return {
             ...state,
             jobs: [...state.jobs, ...payload],
+            loading: false
+        }
+
+        case GET_JOB: 
+        return {
+            ...state,
+            job: payload,
             loading: false
         }
 
@@ -15,6 +23,7 @@ export default (state, action) => {
         return {
             ...state,
             jobs: [],
+            job: null,
             loading: false
         }
 

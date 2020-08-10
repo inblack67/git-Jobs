@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import JobsContext from '../context/jobs/jobsContext'
 
 const SearchJobs = () => {
 
-    const { handleSubmit, errors, register } = useForm({
-        defaultValues: {
-            fulltime: false
-        }
-    });
+    const [submitting, setSubmitting] = useState(false);
+
+    const { handleSubmit, errors, register } = useForm();
+
+    const jobsContext = useContext(JobsContext);
+    const { searchJobs } = jobsContext;
 
     return (
         <div className='container mt-8'>
@@ -16,7 +18,11 @@ const SearchJobs = () => {
 
             <div className='flex justify-center'>
                 <form onSubmit={handleSubmit(formData => {
-                    console.log(formData)
+                    setSubmitting(true);
+
+                    searchJobs(formData);
+
+                    setSubmitting(false);
                 })} className='text-black p-2 w-full'>
                     <div className='py-4'>
                         <input type="text" name='description' placeholder='React, Node etc.' ref={register({
@@ -41,7 +47,7 @@ const SearchJobs = () => {
                         <label htmlFor="fulltime" className='text-gray-400 px-2'>Fulltime?</label>
                     </div>
                     <div>
-                        <button type="submit" className='btn bg-red-500 text-white'>
+                        <button type="submit" className='btn bg-red-500 text-white' disabled={submitting}>
                             Search
                     </button>
                     </div>
