@@ -2,13 +2,14 @@ import React, { useReducer } from 'react'
 import JobsContext from './jobsContext'
 import JobsReducer from './jobsReducer'
 import axios from 'axios'
-import { GET_JOBS, FETCH_ERROR, SEARCH_JOBS, GET_JOB } from '../types'
+import { GET_JOBS, FETCH_ERROR, SEARCH_JOBS, GET_JOB, GEOCODE_ERROR, GET_GEOCODES } from '../types'
 
 const JobsState = (props) => {
 
     const initalState = {
         loading: true,
         jobs: [],
+        geocodedLocations: [],
         job: null
     }
 
@@ -31,7 +32,7 @@ const JobsState = (props) => {
 
     const getJobById = async id => {
         try {
-            
+
             const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}/${id}.json?markdown=true`);
             console.log(res.data);
             dispatch({
@@ -66,16 +67,36 @@ const JobsState = (props) => {
         }
     }
 
+    const getGeocodes = async (text) => {
+        try {
+            const res = await axios(`https://api.mapbox.com/geocoding/v5/mapbox.places/${text}.json?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}
+            `)
+            if (res.data.features) {
+                dispatch({
+                    type: GET_GEOCODES,
+                    payload: res.data.features[0].center
+                })
+            }
+        } catch (err) {
+            console.error(err)
+            dispatch({
+                type: GEOCODE_ERROR
+            })
+        }
+    }
+
     return (
         <JobsContext.Provider value={{
             loading: state.loading,
             jobs: state.jobs,
             job: state.job,
+            geocodedLocations: state.geocodedLocations,
             searchJobs,
             getJobs,
-            getJobById
+            getJobById,
+            getGeocodes
         }}>
-            { props.children }
+            { props.children}
         </JobsContext.Provider>
     )
 }

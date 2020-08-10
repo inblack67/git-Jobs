@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { useLocation, withRouter } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'
+import JobsContext from '../context/jobs/jobsContext'
 
 
 const JobItem = ({ history, job: { company, company_logo, company_url, description, how_to_apply, location, title, type, url, id } }) => {
+
+    useEffect(() => {
+        getGeocodes(location);
+        // eslint-disable-next-line
+    },[])
+
+    const jobsContext = useContext(JobsContext);
+    const { getGeocodes } = jobsContext;
 
     const currentLocation = useLocation();
 

@@ -1,4 +1,4 @@
-import { FETCH_ERROR, GET_JOBS, SEARCH_JOBS, GET_JOB } from '../types';
+import { FETCH_ERROR, GET_JOBS, SEARCH_JOBS, GET_JOB, GEOCODE_ERROR, GET_GEOCODES } from '../types';
 
 export default (state, action) => {
     const { payload, type } = action;
@@ -26,6 +26,20 @@ export default (state, action) => {
             job: null,
             loading: false
         }
+
+        case GET_GEOCODES:
+            return {
+                ...state,
+                geocodedLocations: [...state.geocodedLocations, {...payload}],
+                loading: false
+            }
+
+        case GEOCODE_ERROR:
+            return {
+                ...state,
+                geocodedLocations: [],
+                loading: false
+            }
 
         default: return state;
     }
