@@ -12,7 +12,7 @@ const SearchJobs = () => {
     const { searchJobs } = jobsContext;
 
     return (
-        <div className='container mt-8'>
+        <div className='container mx-auto mt-8'>
 
             <p className='text-xl font-semibold uppercase text-center'>Search Jobs</p>
 

@@ -605,11 +605,11 @@ video {
   }
 }
 
-.container{
-  max-width: 1200px;
-  margin: auto;
-  overflow: hidden;
-}
+/* .container{
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+} */
 
 .btn{
   display: inline-block;

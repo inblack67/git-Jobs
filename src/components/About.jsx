@@ -2,8 +2,14 @@ import React from 'react'
 
 const About = () => {
     return (
-        <div>
-            <h1>About</h1>
+        <div className='container mx-auto'>
+            <div className="text-4xl mt-4 font-semibold">About</div>
+            <div className='text-xl py-2'>
+                Explore, search and locate Github Jobs.
+            </div>
+            <div className='font-hairline py-2'>
+                React | Tailwind | Mapbox | Github Jobs API
+            </div>
         </div>
     )
 }

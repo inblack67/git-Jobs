@@ -13,7 +13,7 @@ import './App.css';
 function App() {
 
   useEffect(() => {
-    document.body.classList.add('bg-gray-900');
+    document.body.classList.add('font-mono');
   }, [])
 
   return (

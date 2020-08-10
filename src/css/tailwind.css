@@ -1,11 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 
-.container{
+/* .container{
     max-width: 1200px;
     margin: auto;
     overflow: hidden;
-}
+} */
 
 .btn{
     @apply inline-block py-2 px-4 uppercase rounded-lg font-semibold
