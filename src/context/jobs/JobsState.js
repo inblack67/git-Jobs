@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import JobsContext from './jobsContext'
 import JobsReducer from './jobsReducer'
 import axios from 'axios'
+import { GET_JOBS, FETCH_ERROR } from '../types'
 
 const JobsState = (props) => {
 
@@ -14,10 +15,16 @@ const JobsState = (props) => {
 
     const getJobs = async () => {
         try {
-            const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}`);
-            console.log(res.data);
+            const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}?markdown=true`);
+            dispatch({
+                type: GET_JOBS,
+                payload: res.data
+            })
         } catch (err) {
-            
+            console.error(err);
+            dispatch({
+                type: FETCH_ERROR
+            })
         }
     }
 
