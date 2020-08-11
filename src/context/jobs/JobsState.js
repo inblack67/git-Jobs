@@ -37,7 +37,6 @@ const JobsState = (props) => {
         count += 1;
         try {
             const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}.json?page=${count}&markdown=true`);
-            console.log(res.data);
             dispatch({
                 type: GET_JOBS,
                 payload: res.data
