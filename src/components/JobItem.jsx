@@ -20,30 +20,32 @@ const JobItem = ({ history, job: { company, company_logo, company_url, descripti
                 </a>
             </div>
             <div className='p-8'>
-                <div className='uppercase flex items-baseline justify-around'>
+                <div className='uppercase flex justify-center items-baseline'>
                     <span className='truncate'>
                         {title}
                     </span>
-                    <span className='bg-red-500 px-4 py-2 font-bold rounded-full text-xs'>
+                    <span className='bg-red-500 px-4 py-2 font-bold rounded-full text-xs mx-4'>
                         {type}
                     </span>
                     <span className='bg-red-500 px-4 py-2 font-bold rounded-full text-xs'>
                         {location}
                     </span>
                 </div>
-                <div className='mt-8 flex items-baseline justify-around'>
-                    <a href={url} target='_blank' rel='noopener noreferrer' className="btn bg-blue-500">Apply</a>
+                <div className='mt-8 flex items-baseline justify-center'>
+                    <a href={url} target='_blank' rel='noopener noreferrer' className="btn bg-blue-500 mr-4">Apply</a>
                     <button className="btn bg-green-500" onClick={onClick}>
                         Explore
                     </button>
                 </div>
                 {currentLocation.pathname === `/jobs/${id}` ? <div className="font-hairline">
                     <div className='font-semibold'>
-                        <h1 className="text-red-500">How to apply?</h1>
+                        <h1 className="text-red-500 text-xl">How to apply?</h1>
+                        <br/>
                         <ReactMarkdown source={how_to_apply} />
                     </div>
-                    <div>
-                        <h1 className="text-xl font-semibold">Description</h1>
+                    <div className='mt-4'>
+                        <h1 className="text-xl font-semibold text-red-500">Description</h1>
+                        <br/>
                         <ReactMarkdown source={description} />
                     </div>
                 </div> : null}

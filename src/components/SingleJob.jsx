@@ -26,7 +26,7 @@ const SingleJob = ({ match }) => {
     }
 
     return (
-        <div>
+        <div className='container'>
             { job && <JobItem job={job} /> }
         </div>
     )
