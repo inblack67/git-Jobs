@@ -4,6 +4,8 @@ import JobsReducer from './jobsReducer'
 import axios from 'axios'
 import { GET_JOBS, FETCH_ERROR, SEARCH_JOBS, GET_JOB, GEOCODE_ERROR, GET_GEOCODES } from '../types'
 
+let count = 1;
+
 const JobsState = (props) => {
 
     const initalState = {
@@ -19,6 +21,23 @@ const JobsState = (props) => {
     const getJobs = async () => {
         try {
             const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}.json?markdown=true`);
+            dispatch({
+                type: GET_JOBS,
+                payload: res.data
+            })
+        } catch (err) {
+            console.error(err);
+            dispatch({
+                type: FETCH_ERROR
+            })
+        }
+    }
+
+    const fetchFurtherJobs = async () => {
+        count += 1;
+        try {
+            const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}.json?page=${count}&markdown=true`);
+            console.log(res.data);
             dispatch({
                 type: GET_JOBS,
                 payload: res.data
@@ -95,7 +114,8 @@ const JobsState = (props) => {
             searchJobs,
             getJobs,
             getJobById,
-            getGeocodes
+            getGeocodes,
+            fetchFurtherJobs
         }}>
             { props.children}
         </JobsContext.Provider>
