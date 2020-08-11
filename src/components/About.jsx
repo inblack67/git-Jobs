@@ -8,7 +8,7 @@ const About = () => {
                 Explore, search and locate Github Jobs.
             </div>
             <div className='font-hairline py-2'>
-                React | Tailwind | Mapbox | Github Jobs API
+                React | Tailwind | Github Jobs API
             </div>
         </div>
     )

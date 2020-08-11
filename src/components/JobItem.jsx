@@ -37,16 +37,18 @@ const JobItem = ({ history, job: { company, company_logo, company_url, descripti
                         Explore
                     </button>
                 </div>
-                {currentLocation.pathname === `/jobs/${id}` ? <div className="font-hairline">
+                {currentLocation.pathname === `/jobs/${id}` ? <div className="font-hairline mt-4">
                     <div className='font-semibold'>
                         <h1 className="text-red-500 text-xl">How to apply?</h1>
-                        <br/>
+                        <br />
                         <ReactMarkdown source={how_to_apply} />
                     </div>
                     <div className='mt-4'>
                         <h1 className="text-xl font-semibold text-red-500">Description</h1>
-                        <br/>
-                        <ReactMarkdown source={description} />
+                        <br />
+                        <div className='font-hairline text-lg'>
+                            <ReactMarkdown source={description} />
+                        </div>
                     </div>
                 </div> : null}
             </div>

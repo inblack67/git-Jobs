@@ -27,11 +27,11 @@ const Jobs = () => {
         <Fragment>
             <div className='container mx-auto text-center font-bold mt-3'>
                 <h1 className='text-4xl mb-4'>Github | Jobs</h1>
-                <div className='grid lg:grid-cols-2 gap-4 sm:grid-cols-1'>
                 <InfiniteScroll pageStart={0} loadMore={fetchMore} hasMore={true} loader={<Preloader key={0} />}>
+                    <div className='grid lg:grid-cols-2 gap-4 sm:grid-cols-1'>
                         {jobs.length > 0 && jobs.map(job => <JobItem key={job.id} job={job} />)}
-                    </InfiniteScroll>
-                </div>
+                    </div>
+                </InfiniteScroll>
             </div>
         </Fragment>
     )
