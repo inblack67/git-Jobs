@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, Fragment } from 'react'
 import { useEffect } from 'react';
 import JobsContext from '../context/jobs/jobsContext'
 import Preloader from './Preloader'
@@ -19,12 +19,14 @@ const Jobs = () => {
     }
 
     return (
-        <div className='container mx-auto text-center font-bold mt-3'>
-            <h1 className='text-4xl mb-4'>Github | Jobs</h1>
-            <div className='grid lg:grid-cols-2 gap-4 sm:grid-cols-1'>
-                {jobs.length > 0 && jobs.map(job => <JobItem key={job.id} job={job} />)}
+        <Fragment>
+            <div className='container mx-auto text-center font-bold mt-3'>
+                <h1 className='text-4xl mb-4'>Github | Jobs</h1>
+                <div className='grid lg:grid-cols-2 gap-4 sm:grid-cols-1'>
+                    {jobs.length > 0 && jobs.map(job => <JobItem key={job.id} job={job} />)}
+                </div>
             </div>
-        </div>
+        </Fragment>
     )
 }
 

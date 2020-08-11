@@ -1,6 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import JobsContext from '../context/jobs/jobsContext'
+import JobItem from './JobItem'
+import Preloader from './Preloader'
 
 const SearchJobs = () => {
 
@@ -9,7 +11,11 @@ const SearchJobs = () => {
     const { handleSubmit, errors, register } = useForm();
 
     const jobsContext = useContext(JobsContext);
-    const { searchJobs } = jobsContext;
+    const { searchJobs, searchedJobs } = jobsContext;
+
+    if(submitting){
+        return <Preloader />
+    }
 
     return (
         <div className='container mx-auto mt-8'>
@@ -53,6 +59,13 @@ const SearchJobs = () => {
                     </div>
                 </form>
             </div>
+            <Fragment>
+                <h1 className='font-hairline text-center my-2'>Search Results: <span className="text-red-500 text-xl">
+                    {searchedJobs.length}</span></h1>
+                <div className="grid lg:grid-cols-2 gap-4 sm:grid-cols-1">
+                    {searchedJobs.length > 0 && searchedJobs.map(job => <JobItem key={job.id} job={job} />)}
+                </div>
+            </Fragment>
         </div>
     )
 }

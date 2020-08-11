@@ -9,8 +9,9 @@ const JobsState = (props) => {
     const initalState = {
         loading: true,
         jobs: [],
+        searchedJobs: [],
+        job: null,
         geocodedLocations: [],
-        job: null
     }
 
     const [state, dispatch] = useReducer(JobsReducer, initalState);
@@ -34,7 +35,6 @@ const JobsState = (props) => {
         try {
 
             const res = await axios(`${process.env.REACT_APP_CORS_HACK}/${process.env.REACT_APP_API_ENDPOINT}/${id}.json?markdown=true`);
-            console.log(res.data);
             dispatch({
                 type: GET_JOB,
                 payload: res.data
@@ -90,6 +90,7 @@ const JobsState = (props) => {
             loading: state.loading,
             jobs: state.jobs,
             job: state.job,
+            searchedJobs: state.searchedJobs,
             geocodedLocations: state.geocodedLocations,
             searchJobs,
             getJobs,

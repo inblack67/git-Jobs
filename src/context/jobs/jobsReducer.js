@@ -5,10 +5,16 @@ export default (state, action) => {
     switch(type){
 
         case GET_JOBS:
-        case SEARCH_JOBS: 
         return {
             ...state,
             jobs: [...state.jobs, ...payload],
+            loading: false
+        }
+
+        case SEARCH_JOBS:
+        return {
+            ...state,
+            searchedJobs: [...payload],
             loading: false
         }
 

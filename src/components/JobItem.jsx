@@ -1,19 +1,10 @@
-import React, { useEffect, useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useLocation, withRouter } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'
-import JobsContext from '../context/jobs/jobsContext'
 
 
 const JobItem = ({ history, job: { company, company_logo, company_url, description, how_to_apply, location, title, type, url, id } }) => {
-
-    useEffect(() => {
-        getGeocodes(location);
-        // eslint-disable-next-line
-    },[])
-
-    const jobsContext = useContext(JobsContext);
-    const { getGeocodes } = jobsContext;
 
     const currentLocation = useLocation();
 
@@ -35,6 +26,9 @@ const JobItem = ({ history, job: { company, company_logo, company_url, descripti
                     </span>
                     <span className='bg-red-500 px-4 py-2 font-bold rounded-full text-xs'>
                         {type}
+                    </span>
+                    <span className='bg-red-500 px-4 py-2 font-bold rounded-full text-xs'>
+                        {location}
                     </span>
                 </div>
                 <div className='mt-8 flex items-baseline justify-around'>
